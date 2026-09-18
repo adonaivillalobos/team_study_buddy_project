@@ -29,6 +29,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
+## Project Specification
+
+See the full project specification, including user stories, data model, and API contract, in [specs/001-studybuddy/spec.md](./specs/001-studybuddy/spec.md).
+
 ## Project Status
 
 🚧 In active development as part of a BYU-Idaho team project.
