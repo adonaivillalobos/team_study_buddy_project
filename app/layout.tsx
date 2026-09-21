@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Montserrat, Open_Sans } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -21,15 +22,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${montserrat.variable} ${openSans.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-body">
-        <Navbar />
-        <div className="flex-1">{children}</div>
-        <Footer />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html
+        lang="en"
+        className={`${montserrat.variable} ${openSans.variable} h-full antialiased`}
+      >
+        <body className="min-h-full flex flex-col bg-background text-foreground font-body">
+          <Navbar />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   return (
@@ -14,6 +15,23 @@ export default function Navbar() {
           <Link href="/progress" className="text-foreground hover:text-primary">
             Progress
           </Link>
+
+          <Show when="signed-out">
+            <SignInButton mode="modal">
+              <button className="text-foreground hover:text-primary">
+                Sign In
+              </button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <button className="rounded-control bg-primary px-4 py-1.5 text-white hover:bg-primary/90">
+                Sign Up
+              </button>
+            </SignUpButton>
+          </Show>
+
+          <Show when="signed-in">
+            <UserButton />
+          </Show>
         </div>
       </nav>
     </header>
