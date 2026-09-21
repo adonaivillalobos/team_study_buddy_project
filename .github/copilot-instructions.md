@@ -35,6 +35,22 @@ Main application routes include:
 - `/plans/[id]/edit` - Edit study plan
 - `/progress` - Progress dashboard
 
+## Reusable Components
+
+The following shared components exist in `components/` and should be reused rather than recreated:
+
+- `Button` - Primary/secondary variants. Accepts all native `<button>` props via `variant="primary" | "secondary"`.
+- `Card` - Generic content container with the project's card styling.
+- `ProgressBar` - Accessible progress indicator (`role="progressbar"` with ARIA value attributes). Takes `value` (0-100) and an optional `label`.
+- `EmptyState` - Zero-data placeholder. Takes `title`, optional `description`, and an optional `action` (e.g. a `<Button>`).
+- `Navbar` - Site header, wired into `app/layout.tsx`. Appears on every page automatically.
+- `Footer` - Site footer, wired into `app/layout.tsx`. Appears on every page automatically.
+
+Still to be built (do not duplicate as generic components — these are domain-specific and depend on the database schema in issue #2):
+
+- `StudyPlanCard`
+- `StudyItem`
+
 ## Coding Guidelines
 
 - Use TypeScript for application code.
@@ -50,28 +66,18 @@ Main application routes include:
 
 ## Design Guidelines
 
-Follow the StudyBuddy design theme:
+Follow the StudyBuddy design theme. Color, font, and spacing tokens are already defined in `app/globals.css` as Tailwind v4 `@theme` variables — use the utility classes below rather than hardcoding hex values or arbitrary values:
 
-- Primary: `#375ECB`
-- Accent: `#FF7310`
-- Background: `#F8FAFC`
-- Success: `#007F2E`
-- Error: `#CC0303`
-- Text: `#1F2937`
-
-Typography:
-
-- Headings: Montserrat
-- Body: Open Sans
+- Colors: `bg-primary` / `text-primary` (`#375ECB`), `bg-accent` / `text-accent` (`#FF7310`), `bg-background` (`#F8FAFC`), `text-success` / `bg-success` (`#007F2E`), `text-error` / `bg-error` (`#CC0303`), `text-foreground` (`#1F2937`)
+- Fonts: `font-heading` (Montserrat, for headings/labels), `font-body` (Open Sans, for body text) — applied via CSS variables `--font-montserrat` and `--font-open-sans` set in `app/layout.tsx`
+- Border radius: `rounded-card` (12px, for cards), `rounded-control` (8px, for buttons/inputs)
 
 Layout guidelines:
 
 - Mobile-first and responsive.
-- Use a centered content area with a maximum width of approximately 1200px.
+- Use a centered content area with a maximum width of approximately 1200px (`max-w-[1200px]`).
 - Use an 8px spacing system where practical.
-- Cards use approximately 12px border radius.
-- Buttons and inputs use approximately 8px border radius.
-- Use subtle shadows and light borders.
+- Use subtle shadows and light borders (see `Card` component for the reference implementation).
 
 ## Database Guidelines
 
@@ -97,10 +103,10 @@ For development work:
 3. Test the changes locally.
 4. Commit with a clear message.
 5. Push the branch to GitHub.
-6. Open a pull request.
-7. Request review from the other team member.
-8. Address review feedback.
-9. Merge the pull request after approval.
+6. Open a pull request into `main`.
+7. Note: as of Week 04, this project is being completed by a single team member. Pull requests are self-reviewed and documented with review comments before merging, in place of a second-member review.
+8. Address any self-review feedback.
+9. Merge the pull request once the review comments are resolved.
 
 ## Important Instructions
 
