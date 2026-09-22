@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import StudyPlanForm from "@/components/StudyPlanForm";
+
+export const metadata: Metadata = {
+  title: "Create Study Plan",
+};
 
 export default async function NewStudyPlanPage() {
   const { userId } = await auth();

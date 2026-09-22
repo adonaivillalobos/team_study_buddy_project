@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { getOrCreateUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 export default async function DashboardPage() {
   const user = await getOrCreateUser();
