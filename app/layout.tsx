@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | StudyBuddy",
   },
   description: "Organize your study schedules and track progress across courses.",
-  metadataBase: new URL("https://your-studybuddy-url.vercel.app"),
+  metadataBase: new URL("https://team-study-buddy-project.vercel.app"),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
