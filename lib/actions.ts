@@ -9,6 +9,9 @@ import {
   getOrCreateCourse,
   createStudyPlan,
   createStudyItems,
+  updateStudyPlan,
+  replaceStudyItems,
+  deleteStudyPlan,
 } from "./study-plans-db";
 
 const FORM_FIELDS = ["courseName", "title", "startDate", "targetDate", "studyItems"] as const;
@@ -68,4 +71,68 @@ export async function createStudyPlanAction(
 
   revalidatePath("/dashboard");
   redirect("/dashboard");
+}
+
+export async function updateStudyPlanAction(
+  planId: string,
+  prevState: StudyPlanFormState,
+  formData: FormData
+): Promise<StudyPlanFormState> {
+  const { userId } = await auth();
+  if (!userId) {
+    redirect("/");
+  }
+
+  const values = snapshotValues(formData);
+
+  const validatedFields = StudyPlanFormSchema.safeParse({
+    courseName: formData.get("courseName"),
+    title: formData.get("title"),
+    startDate: formData.get("startDate"),
+    targetDate: formData.get("targetDate"),
+    studyItems: formData.get("studyItems"),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      message: "Please fix the errors below.",
+      errors: z.flattenError(validatedFields.error).fieldErrors,
+      values,
+    };
+  }
+
+  const data = validatedFields.data;
+
+  try {
+    const course = await getOrCreateCourse(userId, data.courseName);
+    await updateStudyPlan(planId, userId, {
+      courseId: course.id,
+      title: data.title,
+      startDate: data.startDate,
+      targetDate: data.targetDate,
+    });
+    await replaceStudyItems(planId, data.studyItems);
+  } catch (error) {
+    console.error("Failed to update study plan:", error);
+    throw new Error("Something went wrong while updating your study plan. Please try again.");
+  }
+
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
+}
+
+export async function deleteStudyPlanAction(planId: string): Promise<void> {
+  const { userId } = await auth();
+  if (!userId) {
+    throw new Error("You must be signed in to delete a study plan.");
+  }
+
+  try {
+    await deleteStudyPlan(planId, userId);
+  } catch (error) {
+    console.error("Failed to delete study plan:", error);
+    throw new Error("Something went wrong while deleting your study plan. Please try again.");
+  }
+
+  revalidatePath("/dashboard");
 }

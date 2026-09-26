@@ -16,8 +16,12 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "StudyBuddy",
+  title: {
+    default: "StudyBuddy",
+    template: "%s | StudyBuddy",
+  },
   description: "Organize your study schedules and track progress across courses.",
+  metadataBase: new URL("https://team-study-buddy-project.vercel.app"),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

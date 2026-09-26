@@ -1,16 +1,34 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState } from "react";
-import { createStudyPlanAction } from "@/lib/actions";
+import { createStudyPlanAction, updateStudyPlanAction } from "@/lib/actions";
 import type { StudyPlanFormState } from "@/lib/definitions";
 
 const initialState: StudyPlanFormState = {};
 
-export default function StudyPlanForm() {
-  const [state, formAction, isPending] = useActionState(
-    createStudyPlanAction,
-    initialState
-  );
+type StudyPlanFormProps = {
+  mode?: "create" | "edit";
+  planId?: string;
+  defaultValues?: {
+    courseName: string;
+    title: string;
+    startDate: string;
+    targetDate: string;
+    studyItems: string;
+  };
+};
+
+export default function StudyPlanForm({
+  mode = "create",
+  planId,
+  defaultValues,
+}: StudyPlanFormProps) {
+  const action =
+    mode === "edit" && planId
+      ? updateStudyPlanAction.bind(null, planId)
+      : createStudyPlanAction;
+
+  const [state, formAction, isPending] = useActionState(action, initialState);
 
   // React clears uncontrolled fields after every action call. Bumping this
   // key remounts the form so `v` below is re-applied as each input's
@@ -27,11 +45,11 @@ export default function StudyPlanForm() {
   }, [state]);
 
   const v = {
-    courseName: state.values?.courseName ?? "",
-    title: state.values?.title ?? "",
-    startDate: state.values?.startDate ?? "",
-    targetDate: state.values?.targetDate ?? "",
-    studyItems: state.values?.studyItems ?? "",
+    courseName: state.values?.courseName ?? defaultValues?.courseName ?? "",
+    title: state.values?.title ?? defaultValues?.title ?? "",
+    startDate: state.values?.startDate ?? defaultValues?.startDate ?? "",
+    targetDate: state.values?.targetDate ?? defaultValues?.targetDate ?? "",
+    studyItems: state.values?.studyItems ?? defaultValues?.studyItems ?? "",
   };
 
   return (
@@ -97,7 +115,13 @@ export default function StudyPlanForm() {
         disabled={isPending}
         className="rounded-control bg-primary px-4 py-2 text-white hover:bg-primary/90 disabled:opacity-50"
       >
-        {isPending ? "Creating..." : "Create Study Plan"}
+        {isPending
+          ? mode === "edit"
+            ? "Saving..."
+            : "Creating..."
+          : mode === "edit"
+          ? "Save Changes"
+          : "Create Study Plan"}
       </button>
     </form>
   );

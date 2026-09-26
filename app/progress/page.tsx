@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getProgressData } from "@/lib/progress-db";
@@ -6,6 +7,10 @@ import ProgressBar from "@/components/ProgressBar";
 import EmptyState from "@/components/EmptyState";
 import Button from "@/components/Button";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Progress",
+};
 
 export default async function ProgressPage() {
   const { userId } = await auth();
