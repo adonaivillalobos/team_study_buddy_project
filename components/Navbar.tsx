@@ -23,7 +23,7 @@ export default function Navbar() {
               </button>
             </SignInButton>
             <SignUpButton mode="modal">
-              <button className="rounded-control bg-primary px-4 py-1.5 text-white hover:bg-primary/90">
+              <button className="rounded-control bg-primary px-4 py-1.5 text-white hover:bg-primary-hover">
                 Sign Up
               </button>
             </SignUpButton>

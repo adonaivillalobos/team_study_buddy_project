@@ -107,7 +107,7 @@ export default async function Home() {
           </p>
           <div className="mt-8 flex justify-center gap-4 animate-[fadeSlideUp_0.6s_ease-out_0.3s_both]">
             <SignUpButton mode="modal">
-              <button className="rounded-control bg-primary px-6 py-3 text-white font-medium transition-all hover:bg-primary/90 hover:scale-105 active:scale-95">
+              <button className="rounded-control bg-primary px-6 py-3 text-white font-medium transition-all hover:bg-primary-hover hover:scale-105 active:scale-95">
                 Get Started Free
               </button>
             </SignUpButton>
@@ -118,7 +118,7 @@ export default async function Home() {
               Learn More
             </Link>
           </div>
-          <div className="mt-6 flex justify-center gap-6 font-body text-sm text-gray-500 flex-wrap animate-[fadeSlideUp_0.6s_ease-out_0.4s_both]">
+          <div className="mt-6 flex justify-center gap-6 font-body text-sm text-gray-600 flex-wrap animate-[fadeSlideUp_0.6s_ease-out_0.4s_both]">
             <span className="flex items-center gap-1">
               <CheckCircle2 className="h-4 w-4 text-success" /> Free to start
             </span>
@@ -226,7 +226,7 @@ export default async function Home() {
             </p>
             <div className="mt-8">
               <SignUpButton mode="modal">
-                <button className="rounded-control bg-primary px-6 py-3 text-white font-medium transition-all hover:bg-primary/90 hover:scale-105 active:scale-95">
+                <button className="rounded-control bg-primary px-6 py-3 text-white font-medium transition-all hover:bg-primary-hover hover:scale-105 active:scale-95">
                   Get Started Free
                 </button>
               </SignUpButton>

@@ -30,9 +30,6 @@ export default function StudyPlanForm({
 
   const [state, formAction, isPending] = useActionState(action, initialState);
 
-  // React clears uncontrolled fields after every action call. Bumping this
-  // key remounts the form so `v` below is re-applied as each input's
-  // defaultValue, making what the user typed reappear after a failed submit.
   const [resetKey, setResetKey] = useState(0);
   const isFirstRender = useRef(true);
 
@@ -113,7 +110,7 @@ export default function StudyPlanForm({
       <button
         type="submit"
         disabled={isPending}
-        className="rounded-control bg-primary px-4 py-2 text-white hover:bg-primary/90 disabled:opacity-50"
+        className="rounded-control bg-primary px-4 py-2 text-white hover:bg-primary-hover disabled:opacity-50"
       >
         {isPending
           ? mode === "edit"
