@@ -212,3 +212,23 @@ export async function deleteStudyPlan(id: string, userId: string) {
 
   if (error) throw error;
 }
+
+// Counts incomplete study items due within the next 7 days, scoped to
+// the signed-in user via the study_plans!inner join filter.
+export async function getTasksDueThisWeekCount(userId: string): Promise<number> {
+  const today = new Date().toISOString().slice(0, 10);
+  const sevenDaysOut = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .slice(0, 10);
+
+  const { count, error } = await supabase
+    .from("study_items")
+    .select("id, study_plans!inner(user_id)", { count: "exact", head: true })
+    .eq("study_plans.user_id", userId)
+    .eq("completed", false)
+    .gte("due_date", today)
+    .lte("due_date", sevenDaysOut);
+
+  if (error) throw error;
+  return count ?? 0;
+}
