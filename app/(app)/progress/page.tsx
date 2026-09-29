@@ -6,6 +6,7 @@ import Card from "@/components/Card";
 import ProgressBar from "@/components/ProgressBar";
 import EmptyState from "@/components/EmptyState";
 import Button from "@/components/Button";
+import StudyItemToggle from "@/components/StudyItemToggle";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -78,9 +79,12 @@ export default async function ProgressPage() {
           </h2>
           <ul className="mt-3 space-y-2 font-body text-sm">
             {progress.overdueItems.map((item) => (
-              <li key={item.id} className="flex justify-between">
-                <span>{item.title}</span>
-                <span className="text-gray-500">
+              <li key={item.id} className="flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <StudyItemToggle itemId={item.id} completed={false} label={item.title} />
+                  {item.title}
+                </span>
+                <span className="text-gray-600">
                   {item.courseName} — due {item.dueDate}
                 </span>
               </li>
@@ -95,9 +99,12 @@ export default async function ProgressPage() {
         </h2>
         <ul className="mt-3 space-y-2 font-body text-sm">
           {progress.upcomingItems.map((item) => (
-            <li key={item.id} className="flex justify-between">
-              <span>{item.title}</span>
-              <span className="text-gray-500">
+            <li key={item.id} className="flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <StudyItemToggle itemId={item.id} completed={false} label={item.title} />
+                {item.title}
+              </span>
+              <span className="text-gray-600">
                 {item.courseName}
                 {item.dueDate ? ` — due ${item.dueDate}` : ""}
               </span>
@@ -110,10 +117,13 @@ export default async function ProgressPage() {
         <h2 className="font-heading text-lg font-semibold">
           Completed ({progress.completedItems.length})
         </h2>
-        <ul className="mt-3 space-y-2 font-body text-sm text-gray-500">
+        <ul className="mt-3 space-y-2 font-body text-sm text-gray-600">
           {progress.completedItems.map((item) => (
-            <li key={item.id} className="flex justify-between">
-              <span className="line-through">{item.title}</span>
+            <li key={item.id} className="flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <StudyItemToggle itemId={item.id} completed={true} label={item.title} />
+                <span className="line-through">{item.title}</span>
+              </span>
               <span>{item.courseName}</span>
             </li>
           ))}
