@@ -12,7 +12,7 @@ export default function StudyPlanCard({ plan }: { plan: StudyPlanCardData }) {
 
   return (
     <Card>
-      <p className="font-body text-xs uppercase tracking-wide text-gray-500">
+      <p className="font-body text-xs uppercase tracking-wide text-gray-600">
         {plan.courseName}
       </p>
       <h3 className="font-heading text-lg font-semibold mt-1">{plan.title}</h3>

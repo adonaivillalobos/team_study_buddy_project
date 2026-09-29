@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #375ECB;
-  --color-accent: #FF7310;
+  --color-primary: #294699;
+  --color-primary-hover: #25408A;
+  --color-accent: #8A3700;
   --color-background: #F8FAFC;
-  --color-success: #007F2E;
-  --color-error: #CC0303;
+  --color-success: #006325;
+  --color-error: #A80000;
   --color-foreground: #1F2937;
 }
 
 @theme inline {
   --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
   --color-accent: var(--color-accent);
   --color-background: var(--color-background);
   --color-success: var(--color-success);
