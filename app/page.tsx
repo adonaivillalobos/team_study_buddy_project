@@ -111,7 +111,7 @@ export default async function Home() {
             Made <span className="text-primary">Simple</span>
           </h1>
 
-          <p className="font-body text-lg text-gray-800 mt-6 max-w-xl mx-auto animate-[fadeSlideUp_0.6s_ease-out_0.2s_both]">
+          <p className="font-body text-lg text-gray-700 mt-6 max-w-xl mx-auto animate-[fadeSlideUp_0.6s_ease-out_0.2s_both]">
             StudyBuddy helps you create study plans, stay organized, and track
             your progress -- so you can focus on what matters most: your goals.
           </p>
@@ -131,7 +131,7 @@ export default async function Home() {
             </Link>
           </div>
 
-          <div className="mt-6 flex justify-center gap-6 font-body text-sm text-gray-800 flex-wrap animate-[fadeSlideUp_0.6s_ease-out_0.4s_both]">
+          <div className="mt-6 flex justify-center gap-6 font-body text-sm text-gray-700 flex-wrap animate-[fadeSlideUp_0.6s_ease-out_0.4s_both]">
             <span className="flex items-center gap-1">
               <CheckCircle2 className="h-4 w-4 text-[#005000]" />
               Free to start
@@ -161,7 +161,7 @@ export default async function Home() {
             Everything you need to succeed
           </h2>
 
-          <p className="font-body text-gray-800 mt-3 max-w-xl mx-auto">
+          <p className="font-body text-gray-700 mt-3 max-w-xl mx-auto">
             From study plans to progress tracking, StudyBuddy gives you the
             tools to stay focused and reach your goals.
           </p>
@@ -182,7 +182,7 @@ export default async function Home() {
                     {title}
                   </h3>
 
-                  <p className="font-body text-sm text-gray-800 mt-2">
+                  <p className="font-body text-sm text-gray-700 mt-2">
                     {description}
                   </p>
                 </Card>
@@ -216,7 +216,7 @@ export default async function Home() {
                   {step.title}
                 </h3>
 
-                <p className="font-body text-sm text-gray-800 mt-2">
+                <p className="font-body text-sm text-gray-700 mt-2">
                   {step.description}
                 </p>
               </RevealOnScroll>
@@ -225,7 +225,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Honest credibility note, no fabricated testimonial */}
+      {/* Honest credibility note */}
       <section className="mx-auto max-w-[1200px] px-6 py-20">
         <RevealOnScroll>
           <Card className="flex items-start gap-4 transition-all hover:-translate-y-1 hover:shadow-md">
@@ -238,7 +238,7 @@ export default async function Home() {
                 Built for lifelong learners
               </h3>
 
-              <p className="font-body text-sm text-gray-800 mt-2">
+              <p className="font-body text-sm text-gray-700 mt-2">
                 Whether you&apos;re in high school, college, or learning
                 something new on your own, StudyBuddy is here to help you stay
                 organized and follow through on your goals.
